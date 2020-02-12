@@ -250,6 +250,7 @@ vector <Users> addUser (vector<Users> &allUsers) {
     allUsers.push_back(user);
 
     transferUsersFromStructureToFile(allUsers);
+    return allUsers;
 }
 
 int singIn (vector<Users> &allUsers) {
