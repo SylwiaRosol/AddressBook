@@ -219,16 +219,19 @@ void transferUsersFromStructureToFile(vector <Users> &allUsers) {
 
 }
 
-int transferNumberIdLastPerson (vector<Person> &peopleFromBook) {
+int transferNumberIdLastPerson () {
     fstream plik;
     plik.open("ksiazka.txt", ios::in);
     string line;
     int numberWord = 1;
     string word;
     int numberIdLastPerson;
+if (plik.good() == false)
+{
+    numberIdLastPerson = 0;
+}
 
-
-
+else {
     while(getline(plik,line)) {
         for( int i = 0; i < line.size(); i++) {
             if(line[i] != '|' ) {
@@ -248,6 +251,7 @@ int transferNumberIdLastPerson (vector<Person> &peopleFromBook) {
                 word = "";
             }
         }
+    }
     }
     plik.close();
     return numberIdLastPerson;
@@ -272,7 +276,7 @@ vector <Users> addUser (vector<Users> &allUsers) {
     cout << "Uzytkownik zostal dodany" << endl;
 
     if (allUsers.empty() == true) {
-        numberIdUser = 1;
+        numberIdUser = 0;
     } else {
         numberIdUser = allUsers.back().numberIdUser;
     }
@@ -340,17 +344,14 @@ vector <Users> changePassword (vector <Users> &allUsers, int numberIdUser) {
 vector <Person> addPersonToAddressBook(vector<Person> &peopleFromBook, int numberIdUser) {
 
     fstream plik;
-
-    plik.open("ksiazka.txt", ios::out | ios::app);
     string namePerson, surnamePerson, email, address;
     int phoneNumberPerson, numberIdPerson;
     Person personFromBook;
 
-    if (peopleFromBook.empty() == true) {
-        numberIdPerson = 0;
-    } else {
-        numberIdPerson = transferNumberIdLastPerson (peopleFromBook);
-    }
+    numberIdPerson = transferNumberIdLastPerson ();
+
+    plik.open("ksiazka.txt", ios::out | ios::app);
+
 
     cout << "-----DODAWANIE NOWEJ OSOBY DO KSIAZKI ADRESOWEJ-----" << endl << endl;
     cout << "Podaj imie przyjaciela: " << endl;
