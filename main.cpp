@@ -212,9 +212,9 @@ void transferUsersFromStructureToFile(vector <Users> &allUsers) {
 
     plik.open("uzytkownicy.txt", ios::out | ios::trunc );
 
-        for( vector<Users>::iterator i = allUsers.begin(); i <allUsers.end(); i++) {
-    plik << i-> numberIdUser << "|" << i->userName << "|" << i->password << "|" << endl;
-        }
+    for( vector<Users>::iterator i = allUsers.begin(); i <allUsers.end(); i++) {
+        plik << i-> numberIdUser << "|" << i->userName << "|" << i->password << "|" << endl;
+    }
     plik.close();
 
 }
@@ -226,32 +226,31 @@ int transferNumberIdLastPerson () {
     int numberWord = 1;
     string word;
     int numberIdLastPerson;
-if (plik.good() == false)
-{
-    numberIdLastPerson = 0;
-}
+    if (plik.good() == false) {
+        numberIdLastPerson = 0;
+    }
 
-else {
-    while(getline(plik,line)) {
-        for( int i = 0; i < line.size(); i++) {
-            if(line[i] != '|' ) {
-                word += line[i];
-            } else {
+    else {
+        while(getline(plik,line)) {
+            for( int i = 0; i < line.size(); i++) {
+                if(line[i] != '|' ) {
+                    word += line[i];
+                } else {
 
-                switch (numberWord) {
-                case 1:
-                    numberIdLastPerson = atoi(word.c_str());
-                    break;
+                    switch (numberWord) {
+                    case 1:
+                        numberIdLastPerson = atoi(word.c_str());
+                        break;
+                    }
+                    if(numberWord == 7) {
+                        numberWord = 0;
+                    }
+
+                    numberWord++;
+                    word = "";
                 }
-                if(numberWord == 7) {
-                    numberWord = 0;
-                }
-
-                numberWord++;
-                word = "";
             }
         }
-    }
     }
     plik.close();
     return numberIdLastPerson;
@@ -304,11 +303,9 @@ int singIn (vector<Users> &allUsers) {
             if (i->password == password) {
                 cout << "Jestes zalogowany" << endl;
                 numberIdUser = i-> numberIdUser;
-            }
-            else if (i->password != password) {
-                    numberIdUser = 0;
-                }
-            else if (i->userName != userName) {
+            } else if (i->password != password) {
+                numberIdUser = 0;
+            } else if (i->userName != userName) {
                 numberIdUser = 0;
             }
         }
@@ -330,11 +327,12 @@ vector <Users> changePassword (vector <Users> &allUsers, int numberIdUser) {
         if( i-> numberIdUser == numberIdUser) {
             i-> password = newPassword;
             cout << "Haslo zostalo zmienione" << endl;
+            transferUsersFromStructureToFile(allUsers);
 
         }
 
     }
-    transferUsersFromStructureToFile(allUsers);
+
     system("pause");
     return allUsers;
 }
@@ -405,8 +403,6 @@ void searchByName (vector <Person> &peopleFromBook) {
             cout<< "Email: " << i->email << endl;
             cout<<"Adres: " << i->address << endl << endl;
         }
-
-
     }
 
     system("pause");
@@ -484,15 +480,15 @@ vector <Person> deletePeopleFromBook(vector <Person> &peopleFromBook, int number
             if( choice == 't') {
                 peopleFromBook.erase(i);
                 cout << "Zostala usunieta osoba o numerze id " << numberId << endl;
+                transferToSecondFile(peopleFromBook, numberId, numberIdUser);
                 system("pause");
             } else {
                 cout << "Osoba nie zostala usunieta";
                 Sleep(1500);
             }
-
         }
     }
-    transferToSecondFile(peopleFromBook, numberId, numberIdUser);
+
     return peopleFromBook;
 }
 
@@ -507,65 +503,62 @@ vector <Person> editInformacionFromBook(vector <Person> &peopleFromBook, int num
     cin >> numerId;
     for( vector<Person>::iterator i = peopleFromBook.begin(); i < peopleFromBook.end(); i++) {
 
-            if (i->numberIdPerson == numerId) {
-                system("cls");
-                cout << "-----CO CHCESZ EDYTOWAC-----"<< endl;
-                cout << "----------------------"<< endl;
-                cout << "1. Imie" << endl;
-                cout << "2. Nazwisko" << endl;
-                cout << "3. Numer telefonu" << endl;
-                cout << "4. Email" << endl;
-                cout << "5. Adres" << endl;
-                cout << "6. Powrot do menu glownego" << endl;
-                cout << "Twoj wybor to: ";
-                cin >> choice;
+        if (i->numberIdPerson == numerId) {
+            system("cls");
+            cout << "-----CO CHCESZ EDYTOWAC-----"<< endl;
+            cout << "----------------------"<< endl;
+            cout << "1. Imie" << endl;
+            cout << "2. Nazwisko" << endl;
+            cout << "3. Numer telefonu" << endl;
+            cout << "4. Email" << endl;
+            cout << "5. Adres" << endl;
+            cout << "6. Powrot do menu glownego" << endl;
+            cout << "Twoj wybor to: ";
+            cin >> choice;
 
-                switch (choice) {
-                case '1':
-                    cout << "Podaj na jakie imie chcesz zmienic?"<< endl;
-                    cin >> i->namePerson;
-                    cout << "Imie zostalo zmienione" << endl;
-                    Sleep(1500);
-                    break;
+            switch (choice) {
+            case '1':
+                cout << "Podaj na jakie imie chcesz zmienic?"<< endl;
+                cin >> i->namePerson;
+                cout << "Imie zostalo zmienione" << endl;
+                Sleep(1500);
+                break;
 
 
-                case '2':
-                    cout << "Podaj na jakie nazwisko chcesz zmienic?"<< endl;
-                    cin >>  i->surnamePerson;
-                    cout << "Nazwisko zostalo zmienione" << endl;
-                    Sleep(1500);
-                    break;
+            case '2':
+                cout << "Podaj na jakie nazwisko chcesz zmienic?"<< endl;
+                cin >>  i->surnamePerson;
+                cout << "Nazwisko zostalo zmienione" << endl;
+                Sleep(1500);
+                break;
 
-                case '3':
-                    cout << "Podaj na jaki numer telefonu chcesz zmienic?"<< endl;
-                    cin >> i->phoneNumberPerson;
-                    cout << "Numer telefonu zostal zmieniny" << endl;
-                    Sleep(1500);
-                    break;
+            case '3':
+                cout << "Podaj na jaki numer telefonu chcesz zmienic?"<< endl;
+                cin >> i->phoneNumberPerson;
+                cout << "Numer telefonu zostal zmieniny" << endl;
+                Sleep(1500);
+                break;
 
-                case '4':
-                    cout << "Podaj na jaki adres email chcesz zmienic?"<< endl;
-                    cin >> i->email;
-                    cout << "Email zostal zmieniony" << endl;
-                    Sleep(1500);
-                    break;
+            case '4':
+                cout << "Podaj na jaki adres email chcesz zmienic?"<< endl;
+                cin >> i->email;
+                cout << "Email zostal zmieniony" << endl;
+                Sleep(1500);
+                break;
 
-                case '5':
-                    cout << "Podaj na jaki adres chcesz zmienic?"<< endl;
-                    cin >> i->address;
-                    cout << "Adres zostal zmieniony" << endl;
-                    Sleep(1500);
-                    break;
+            case '5':
+                cout << "Podaj na jaki adres chcesz zmienic?"<< endl;
+                cin >> i->address;
+                cout << "Adres zostal zmieniony" << endl;
+                Sleep(1500);
+                break;
 
-                case '6':
-                    break;
-                }
+            case '6':
+                break;
+            }
+            transferToSecondFile(peopleFromBook, numberIdPerson, numberIdUser);
         }
     }
-
-    transferToSecondFile(peopleFromBook, numberIdPerson, numberIdUser);
-
-
     return peopleFromBook;
 }
 
@@ -645,7 +638,7 @@ int main() {
                 peopleFromBook = editInformacionFromBook(peopleFromBook, numberIdUser);
                 break;
             case '6':
-                allUsers = changePassword ( allUsers, numberIdUser);
+                allUsers = changePassword (allUsers, numberIdUser);
                 break;
             case '7':
                 numberIdUser = 0;
