@@ -139,13 +139,10 @@ void transferToSecondFile(vector <Person> &peopleFromBook, int numberIdPerson, i
     plik1.open( "ksiazka.txt", ios::in);
     plik2.open( "ksiazka_tymczasowa.txt", ios::out | ios::app);
 
-
     string line;
     int numberWord = 1;
     string word;
     Person personFromBook;
-
-
 
     while(getline(plik1,line)) {
         for( int i = 0; i < line.size(); i++) {
@@ -189,9 +186,9 @@ void transferToSecondFile(vector <Person> &peopleFromBook, int numberIdPerson, i
                             if (i->numberIdPerson == zmienna)
                                 plik2 << i->numberIdPerson << "|" << i->numberIdUser << "|" << i->namePerson << "|" << i->surnamePerson << "|" << i->phoneNumberPerson  << "|" << i->email << "|" << i->address << "|" << endl;
                         }
-                    }
-
                 }
+
+ }
 
                 numberWord++;
                 word = "";
@@ -346,7 +343,7 @@ vector <Person> addPersonToAddressBook(vector<Person> &peopleFromBook, int numbe
     int phoneNumberPerson, numberIdPerson;
     Person personFromBook;
 
-    numberIdPerson = transferNumberIdLastPerson ();
+    numberIdPerson = transferNumberIdLastPerson();
 
     plik.open("ksiazka.txt", ios::out | ios::app);
 
@@ -370,6 +367,7 @@ vector <Person> addPersonToAddressBook(vector<Person> &peopleFromBook, int numbe
     plik.close();
 
     personFromBook.numberIdPerson = numberIdPerson;
+    personFromBook.numberIdUser = numberIdUser;
     personFromBook.namePerson = namePerson;
     personFromBook.surnamePerson = surnamePerson;
     personFromBook.phoneNumberPerson = phoneNumberPerson;
