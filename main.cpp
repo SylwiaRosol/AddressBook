@@ -4,67 +4,14 @@
 #include <fstream>
 #include <cstdlib>
 #include <vector>
+#include "Users.h"
 
 using namespace std;
-
-struct Users {
-    string userName;
-    string password;
-    int numberIdUser;
-
-};
 
 struct Person {
     int numberIdPerson, phoneNumberPerson, numberIdUser;
     string namePerson, surnamePerson, email, address;
 };
-
-
-
-vector <Users> transferUsersFromFile ( vector <Users> &allUsers) {
-    fstream plik;
-    plik.open("uzytkownicy.txt", ios::in);
-    string line;
-    int numberWord = 1;
-    string word;
-    Users user;
-    int numberIdUser;
-
-
-
-    while(getline(plik,line)) {
-        for( int i = 0; i < line.size(); i++) {
-            if(line[i] != '|' ) {
-                word += line[i];
-            } else {
-
-                switch (numberWord) {
-                case 1:
-                    user.numberIdUser = atoi(word.c_str());
-                    break;
-                case 2:
-                    user.userName = word;
-                    break;
-                case 3:
-                    user.password = word;
-                    break;
-
-                }
-                if(numberWord == 3) {
-                    numberWord = 0;
-                    allUsers.push_back(user);
-
-                }
-
-                numberWord++;
-                word = "";
-            }
-        }
-    }
-
-    plik.close();
-    return allUsers;
-}
 
 vector <Person> transferPeopleFromFileToStructure (vector<Person> &peopleFromBook, int numberIdUserLogged) {
     fstream plik;
@@ -181,39 +128,23 @@ void transferToSecondFile(vector <Person> &peopleFromBook, int numberIdPerson, i
                     }
 
                     else if(personFromBook.numberIdUser == numberIdUserLogged) {
-                        int zmienna = personFromBook.numberIdPerson;
+                        int numberId = personFromBook.numberIdPerson;
                         for( vector<Person>::iterator i = peopleFromBook.begin(); i <peopleFromBook.end(); i++) {
-                            if (i->numberIdPerson == zmienna)
+                            if (i->numberIdPerson == numberId)
                                 plik2 << i->numberIdPerson << "|" << i->numberIdUser << "|" << i->namePerson << "|" << i->surnamePerson << "|" << i->phoneNumberPerson  << "|" << i->email << "|" << i->address << "|" << endl;
                         }
                 }
-
  }
-
                 numberWord++;
                 word = "";
             }
         }
     }
-
-
     plik1.close();
     plik2.close();
 
     system("erase ksiazka.txt");
     rename( "ksiazka_tymczasowa.txt", "ksiazka.txt");
-}
-
-void transferUsersFromStructureToFile(vector <Users> &allUsers) {
-    fstream plik;
-
-    plik.open("uzytkownicy.txt", ios::out | ios::trunc );
-
-    for( vector<Users>::iterator i = allUsers.begin(); i <allUsers.end(); i++) {
-        plik << i-> numberIdUser << "|" << i->userName << "|" << i->password << "|" << endl;
-    }
-    plik.close();
-
 }
 
 int transferNumberIdLastPerson () {
@@ -252,88 +183,6 @@ int transferNumberIdLastPerson () {
     plik.close();
     return numberIdLastPerson;
 }
-
-
-
-vector <Users> addUser (vector<Users> &allUsers) {
-    string userName;
-    string password;
-    int numberIdUser;
-    Users user;
-    fstream plik;
-
-    system("cls");
-
-    cout<< "Rejstracja" << endl;
-    cout << "Podaj swoj login" << endl;
-    cin >> userName;
-    cout << "Podaj haslo" << endl;
-    cin >> password;
-    cout << "Uzytkownik zostal dodany" << endl;
-
-    if (allUsers.empty() == true) {
-        numberIdUser = 0;
-    } else {
-        numberIdUser = allUsers.back().numberIdUser;
-    }
-
-    user.userName = userName;
-    user.password = password;
-    user.numberIdUser = numberIdUser+1;
-    allUsers.push_back(user);
-
-    transferUsersFromStructureToFile(allUsers);
-    return allUsers;
-}
-
-int singIn (vector<Users> &allUsers) {
-    string userName;
-    string password;
-    int numberIdUser=0;
-    Users user;
-    cout <<"Podaj swoj nick" << endl;
-    cin >> userName;
-    for( vector<Users>::iterator i = allUsers.begin(); i < allUsers.end(); i++) {
-        if ( i->userName == userName) {
-            cout << "Podaj haslo" << endl;
-            cin >> password;
-            if (i->password == password) {
-                cout << "Jestes zalogowany" << endl;
-                numberIdUser = i-> numberIdUser;
-            } else if (i->password != password) {
-                numberIdUser = 0;
-            } else if (i->userName != userName) {
-                numberIdUser = 0;
-            }
-        }
-    }
-
-
-    system("pause");
-
-    return numberIdUser;
-}
-
-vector <Users> changePassword (vector <Users> &allUsers, int numberIdUser) {
-    string newPassword;
-    cout << "Podaj nowe haslo" << endl;
-    cin >> newPassword;
-    numberIdUser;
-
-    for( vector<Users>::iterator i = allUsers.begin(); i < allUsers.end(); i++) {
-        if( i-> numberIdUser == numberIdUser) {
-            i-> password = newPassword;
-            cout << "Haslo zostalo zmienione" << endl;
-            transferUsersFromStructureToFile(allUsers);
-
-        }
-
-    }
-
-    system("pause");
-    return allUsers;
-}
-
 
 
 vector <Person> addPersonToAddressBook(vector<Person> &peopleFromBook, int numberIdUser) {
@@ -383,7 +232,7 @@ vector <Person> addPersonToAddressBook(vector<Person> &peopleFromBook, int numbe
 
 void searchByName (vector <Person> &peopleFromBook) {
     string namePerson = "";
-    Person personFromBook;
+    bool goodName = false;
 
     system("cls");
     cout << "-----WYSZUKIWANIE OSOBY PO IMIENIU-----"<< endl << endl;
@@ -392,7 +241,6 @@ void searchByName (vector <Person> &peopleFromBook) {
 
     cout <<"Dane wyszukanej osoby to: " << endl << endl;
 
-
     for( vector<Person>::iterator i = peopleFromBook.begin(); i < peopleFromBook.end(); i++) {
 
         if (i->namePerson == namePerson) {
@@ -400,15 +248,19 @@ void searchByName (vector <Person> &peopleFromBook) {
             cout<<"Telefon: " << i->phoneNumberPerson << endl;
             cout<< "Email: " << i->email << endl;
             cout<<"Adres: " << i->address << endl << endl;
+        goodName = true;
         }
     }
-
+    if (goodName == false){
+        cout << "Nie znaleziono osoby o tym imieniu." << endl;
+    }
     system("pause");
-
 }
 
 void searchBySurname (vector <Person> &peopleFromBook) {
-    string surnamePerson;
+    string surnamePerson="";
+    bool goodSurname = false;
+
     cout << "-----WYSZUKIWANIE OSOBY PO NAZWISKU-----"<< endl << endl;
     cout << "Podaj nazwisko: " << endl;
     cin >> surnamePerson;
@@ -416,16 +268,18 @@ void searchBySurname (vector <Person> &peopleFromBook) {
     cout << "Dane wyszukanej osoby to: " << endl << endl;
 
     for( vector<Person>::iterator i = peopleFromBook.begin(); i <peopleFromBook.end(); i++) {
-
         if (i->surnamePerson == surnamePerson) {
             cout<<"Imie i nazwisko: " << i->namePerson << " " << i->surnamePerson << endl;
             cout<<"Telefon: " << i->phoneNumberPerson << endl;
             cout<< "Email: " << i->email << endl;
             cout<<"Adres: " << i->address << endl << endl;
+            goodSurname = true;
         }
     }
+    if (goodSurname == false){
+        cout << "Nie znaleziono osoby o podanym nazwisku" << endl;
+    }
     system("pause");
-
 }
 
 void findPersonInTheAddressBook(vector <Person> &peopleFromBook) {
@@ -454,7 +308,6 @@ void viewAllPeopleInTheAddressBook(vector <Person> &peopleFromBook) {
     cout << "-----WSZYSTKIE OSOBY Z KSIAZKI TELEFONICZNEJ----- " << endl << endl;
 
     for( vector<Person>::iterator i = peopleFromBook.begin(); i <peopleFromBook.end(); i++) {
-
         cout << i->namePerson << " " << i->surnamePerson << endl;
         cout <<"telefon: " << i->phoneNumberPerson << endl;
         cout << "email: " << i->email << endl;
@@ -486,7 +339,6 @@ vector <Person> deletePeopleFromBook(vector <Person> &peopleFromBook, int number
             }
         }
     }
-
     return peopleFromBook;
 }
 
@@ -562,16 +414,15 @@ vector <Person> editInformacionFromBook(vector <Person> &peopleFromBook, int num
 
 
 
-
-
 int main() {
 
     vector <Person> peopleFromBook;
-    vector<Users> allUsers;
+    vector <Users> allUsers;
     int numberIdUser=0;
     char choice;
+    Users user;
 
-    allUsers = transferUsersFromFile (allUsers);
+    allUsers = user.transferUsersFromFile(allUsers);
 
     while (1) {
         if(numberIdUser == 0) {
@@ -587,11 +438,11 @@ int main() {
 
             switch (choice) {
             case '1':
-                allUsers = addUser(allUsers);
+                allUsers = user.addUser(allUsers);
                 break;
 
             case '2':
-                numberIdUser = singIn (allUsers);
+                numberIdUser = user.singIn (allUsers);
                 peopleFromBook = transferPeopleFromFileToStructure(peopleFromBook, numberIdUser);
                 break;
 
@@ -636,7 +487,7 @@ int main() {
                 peopleFromBook = editInformacionFromBook(peopleFromBook, numberIdUser);
                 break;
             case '6':
-                allUsers = changePassword (allUsers, numberIdUser);
+                allUsers = user.changePassword (allUsers, numberIdUser);
                 break;
             case '7':
                 numberIdUser = 0;
