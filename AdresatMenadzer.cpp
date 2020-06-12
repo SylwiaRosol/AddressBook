@@ -18,35 +18,33 @@ int AdresatMenadzer::dodajAdresata(int idZalogowanegoUzytkownika)
 Adresat AdresatMenadzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika)
 {
     Adresat adresat;
-    UzytkownikMenadzer uzytkownikMenadzer;
     idOstatniegoAdresata = 0;
     int id, idUzytkownika;
     string imie, nazwisko, numerTelefonu, email, adres;
 
     adresat.ustawId(idOstatniegoAdresata+1);
-    idUzytkownika = uzytkownikMenadzer.pobierzIdZalogowanegoUzytkownika();
-    adresat.ustawIdUzytkownika(idUzytkownika);
+    adresat.ustawIdUzytkownika(idZalogowanegoUzytkownika);
 
     cout << "Podaj imie: ";
-    cin >> imie;
+    imie = wczytajLinie();
     imie = zamienPierwszaLitereNaDuzaAPozostaleNaMale(imie);
     adresat.ustawImie(imie);
 
     cout << "Podaj nazwisko: ";
-    cin >> nazwisko;
+    nazwisko = wczytajLinie();
     nazwisko = zamienPierwszaLitereNaDuzaAPozostaleNaMale(nazwisko);
     adresat.ustawNazwisko(nazwisko);
 
     cout << "Podaj numer telefonu: ";
-    cin >> numerTelefonu;
+    numerTelefonu = wczytajLinie();
     adresat.ustawNumerTelefonu(numerTelefonu);
 
     cout << "Podaj email: ";
-    cin >> email;
+    email = wczytajLinie();
     adresat.ustawEmail(email);
 
     cout << "Podaj adres: ";
-    cin >> adres;
+    adres = wczytajLinie();
     adresat.ustawAdres(adres);
 
     return adresat;
@@ -93,4 +91,17 @@ string AdresatMenadzer::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
         tekst[0] = toupper(tekst[0]);
     }
     return tekst;
+}
+
+
+int AdresatMenadzer::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika)
+{
+        idOstatniegoAdresata = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
+}
+
+string AdresatMenadzer::wczytajLinie()
+{
+    string wejscie = "";
+    getline(cin, wejscie);
+    return wejscie;
 }

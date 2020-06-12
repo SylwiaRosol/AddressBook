@@ -1,4 +1,5 @@
 #include "UzytkownikMenadzer.h"
+#include "MetodyPomocnicze.h"
 
 
 
@@ -114,7 +115,7 @@ string UzytkownikMenadzer::wczytajLinie()
     return wejscie;
 }
 
-void UzytkownikMenadzer::zmianaHaslaZalogowanegoUzytkownika(int idZalogowanegoUzytkownika)
+void UzytkownikMenadzer::zmianaHaslaZalogowanegoUzytkownika()
 {
     string noweHaslo = "";
     cout << "Podaj nowe haslo: ";
@@ -122,7 +123,7 @@ void UzytkownikMenadzer::zmianaHaslaZalogowanegoUzytkownika(int idZalogowanegoUz
 
     for (vector <Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++)
     {
-        if (itr -> pobierzId() == idZalogowanegoUzytkownika)
+        if (itr -> pobierzId() == pobierzIdZalogowanegoUzytkownika())
         {
             itr -> ustawHaslo(noweHaslo);
             cout << "Haslo zostalo zmienione." << endl << endl;

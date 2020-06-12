@@ -10,14 +10,14 @@ int main()
 {
     int idUzytkownika;
     int idZalogowanegoUzytkownika,  idOstatniegoAdresata;
-    KsiazkaAdresowa ksiazkaAdresowa ("Uzytkownicy.txt");
+    KsiazkaAdresowa ksiazkaAdresowa ("Uzytkownicy.txt", "Adresaci.txt");
     //ksiazkaAdresowa.rejstracjaUzytkownika();
     ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
-    idUzytkownika = ksiazkaAdresowa.logowanieUzytkownika();
-    ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika(idUzytkownika);
-    ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
-    //ksiazkaAdresowa.dodajAdresata(idZalogowanegoUzytkownika);
-    //ksiazkaAdresowa.wyswietlWszystkichAdresatow();
+    ksiazkaAdresowa.logowanieUzytkownika();
+    //ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
+    //ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
+    ksiazkaAdresowa.dodajAdresata(idZalogowanegoUzytkownika);
+    ksiazkaAdresowa.wyswietlWszystkichAdresatow();
 
 
     return 0;
