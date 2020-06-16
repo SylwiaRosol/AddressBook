@@ -32,6 +32,8 @@ public:
     string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
     int wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
     string wczytajLinie();
+    vector <Adresat> pobierzVectorAdresaci();
+    void ustawVectorAdresaci(vector <Adresat> nowyVectorAdresaci);
 };
 
 #endif

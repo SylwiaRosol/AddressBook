@@ -105,3 +105,13 @@ string AdresatMenadzer::wczytajLinie()
     getline(cin, wejscie);
     return wejscie;
 }
+
+vector <Adresat> AdresatMenadzer::pobierzVectorAdresaci()
+{
+    return adresaci;
+}
+
+void AdresatMenadzer::ustawVectorAdresaci(vector <Adresat> nowyVectorAdresaci)
+{
+    adresaci = nowyVectorAdresaci;
+}

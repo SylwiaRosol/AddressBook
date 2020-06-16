@@ -137,8 +137,6 @@ void UzytkownikMenadzer::zmianaHaslaZalogowanegoUzytkownika()
 void UzytkownikMenadzer::wylogowanie()
 {
     idZalogowanegoUzytkownika = 0;
-
-      //  adresaci.clear();
       cout << "Zostales wylogowany" << endl;
 }
 

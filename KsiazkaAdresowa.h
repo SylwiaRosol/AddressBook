@@ -31,5 +31,8 @@ public:
     void wylogowanie();
     void dodajAdresata(int idZalogowanegoUzytkownika);
     void wyswietlWszystkichAdresatow();
+    char wybierzOpcjeZMenuUzytkownika();
+    char wybierzOpcjeZMenuGlownego();
+    char wczytajZnak();
 
 };
