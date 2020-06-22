@@ -16,6 +16,7 @@ class PlikZAdresatami
 {
     const string nazwaPlikuZAdresatami;
     fstream plikTekstowy;
+    int idOstatniegoAdresata;
 
 public:
 

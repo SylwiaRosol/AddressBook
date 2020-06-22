@@ -8,10 +8,12 @@ using namespace std;
 
 int main()
 {
-    int idUzytkownika;
-    int idZalogowanegoUzytkownika,  idOstatniegoAdresata;
+
     char wybor, wybor2;
     KsiazkaAdresowa ksiazkaAdresowa ("Uzytkownicy.txt", "Adresaci.txt");
+
+    while(1)
+    {
     wybor = ksiazkaAdresowa.wybierzOpcjeZMenuGlownego();
     if(wybor == '1')
     {
@@ -19,13 +21,13 @@ int main()
     }
     else if(wybor == '2')
     {
-        idZalogowanegoUzytkownika = ksiazkaAdresowa.logowanieUzytkownika();
-        while(idZalogowanegoUzytkownika != 0)
+        ksiazkaAdresowa.logowanieUzytkownika();
+        while(ksiazkaAdresowa.czyUzytkownikJestZalogowany())
         {
         wybor2 = ksiazkaAdresowa.wybierzOpcjeZMenuUzytkownika();
         if (wybor2 == '1')
         {
-            ksiazkaAdresowa.dodajAdresata(idZalogowanegoUzytkownika);
+            ksiazkaAdresowa.dodajAdresata();
         }
         else if (wybor2 == '4')
         {
@@ -38,10 +40,13 @@ int main()
         else if (wybor2 == '8')
         {
              ksiazkaAdresowa.wylogowanie();
-             idZalogowanegoUzytkownika = 0;
         }
+    }}
+    else if (wybor = '9')
+    {
+        exit(0);
     }
-}
+    }
 
     return 0;
 }

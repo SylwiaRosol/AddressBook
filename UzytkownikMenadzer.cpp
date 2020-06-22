@@ -66,11 +66,6 @@ bool UzytkownikMenadzer::czyIstniejeLogin(string login)
 
 }
 
-void UzytkownikMenadzer::wczytajUzytkownikowZPliku()
-{
-    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
-}
-
 int UzytkownikMenadzer::logowanieUzytkownika()
 {
      Uzytkownik uzytkownik;
@@ -149,3 +144,12 @@ void UzytkownikMenadzer::ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUz
 {
  idZalogowanegoUzytkownika = noweIdZalogowanegoUzytkownika;
 }
+
+ bool UzytkownikMenadzer::czyUzytkownikJestZalogowany()
+ {
+     if(idZalogowanegoUzytkownika > 0)
+         return true;
+
+     else
+        return false;
+ }

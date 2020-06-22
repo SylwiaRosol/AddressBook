@@ -1,21 +1,21 @@
 #include "AdresatMenadzer.h"
 
 
-int AdresatMenadzer::dodajAdresata(int idZalogowanegoUzytkownika)
+void AdresatMenadzer::dodajAdresata()
 {
     Adresat adresat;
 
     system("cls");
     cout << " >>> DODAWANIE NOWEGO ADRESATA <<<" << endl << endl;
-    adresat = podajDaneNowegoAdresata(idZalogowanegoUzytkownika);
+    adresat = podajDaneNowegoAdresata();
 
     adresaci.push_back(adresat);
     //dopiszAdresataDoPliku(adresat);
 
-    return ++idOstatniegoAdresata;
+
 }
 
-Adresat AdresatMenadzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika)
+Adresat AdresatMenadzer::podajDaneNowegoAdresata()
 {
     Adresat adresat;
     idOstatniegoAdresata = 0;
@@ -23,7 +23,7 @@ Adresat AdresatMenadzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika)
     string imie, nazwisko, numerTelefonu, email, adres;
 
     adresat.ustawId(idOstatniegoAdresata+1);
-    adresat.ustawIdUzytkownika(idZalogowanegoUzytkownika);
+    adresat.ustawIdUzytkownika(ID_ZALOGOWANEGO_UZYTKOWNIKA);
 
     cout << "Podaj imie: ";
     imie = wczytajLinie();
@@ -94,9 +94,9 @@ string AdresatMenadzer::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
 }
 
 
-int AdresatMenadzer::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika)
+int AdresatMenadzer::wczytajAdresatowZalogowanegoUzytkownikaZPliku()
 {
-        idOstatniegoAdresata = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
+        idOstatniegoAdresata = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, ID_ZALOGOWANEGO_UZYTKOWNIKA);
 }
 
 string AdresatMenadzer::wczytajLinie()
@@ -104,14 +104,4 @@ string AdresatMenadzer::wczytajLinie()
     string wejscie = "";
     getline(cin, wejscie);
     return wejscie;
-}
-
-vector <Adresat> AdresatMenadzer::pobierzVectorAdresaci()
-{
-    return adresaci;
-}
-
-void AdresatMenadzer::ustawVectorAdresaci(vector <Adresat> nowyVectorAdresaci)
-{
-    adresaci = nowyVectorAdresaci;
 }
