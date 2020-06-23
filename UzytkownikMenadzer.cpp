@@ -21,6 +21,7 @@ void UzytkownikMenadzer::wypiszWszystkichUzytkownikow()
          cout << uzytkownicy[i].pobierzId() << endl;
          cout << uzytkownicy[i].pobierzLogin()<< endl;
          cout << uzytkownicy[i].pobierzHaslo()<< endl;
+         system("pause");
 
     }
 
@@ -31,18 +32,17 @@ Uzytkownik UzytkownikMenadzer::podajDaneNowegoUzytkownika()
     Uzytkownik uzytkownik;
     string login;
     uzytkownik.ustawId(pobierzIdNowegoUzytkownika());
-    do
-    {
-        cout << "Podaj login: ";
-        cin >> login;
-        uzytkownik.ustawLogin(login);
-    } while (czyIstniejeLogin(uzytkownik.pobierzLogin()) == false);
+
+    do{
+    cout << "Podaj login: ";
+    cin >> login;
+    } while (czyIstniejeLogin(login));
+     uzytkownik.ustawLogin(login);
 
     string haslo;
     cout << "Podaj haslo: ";
     cin >> haslo;
     uzytkownik.ustawHaslo(haslo);
-
     return uzytkownik;
 }
 
@@ -59,8 +59,10 @@ bool UzytkownikMenadzer::czyIstniejeLogin(string login)
     for (int i = 0; i < uzytkownicy.size(); i++)
     {
         if (uzytkownicy[i].pobierzLogin() == login)
+        {
             cout << endl << "Istnieje uzytkownik o takim loginie " << endl;
             return true;
+    }
     }
     return false;
 

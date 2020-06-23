@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <cstdlib>
 
 #include "Uzytkownik.h"
 #include "PlikZUzytkownikami.h"

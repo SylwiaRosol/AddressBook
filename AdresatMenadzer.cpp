@@ -22,7 +22,7 @@ Adresat AdresatMenadzer::podajDaneNowegoAdresata()
     int id, idUzytkownika;
     string imie, nazwisko, numerTelefonu, email, adres;
 
-    adresat.ustawId(idOstatniegoAdresata+1);
+    adresat.ustawId(plikZAdresatami.pobierzIdOstatniegoAdresata()+1);
     adresat.ustawIdUzytkownika(ID_ZALOGOWANEGO_UZYTKOWNIKA);
 
     cout << "Podaj imie: ";
@@ -105,3 +105,4 @@ string AdresatMenadzer::wczytajLinie()
     getline(cin, wejscie);
     return wejscie;
 }
+

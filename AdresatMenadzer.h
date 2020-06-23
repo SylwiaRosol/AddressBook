@@ -4,10 +4,12 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
+#include <sstream>
+#include <algorithm>
 
 #include "Adresat.h"
 #include "PlikZAdresatami.h"
-#include "UzytkownikMenadzer.h"
+
 
 using namespace std;
 

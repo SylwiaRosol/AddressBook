@@ -19,6 +19,10 @@ int main()
     {
         ksiazkaAdresowa.rejstracjaUzytkownika();
     }
+    else if(wybor == '5')
+    {
+        ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
+    }
     else if(wybor == '2')
     {
         ksiazkaAdresowa.logowanieUzytkownika();
