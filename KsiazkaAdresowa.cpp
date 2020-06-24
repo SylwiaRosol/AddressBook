@@ -104,8 +104,13 @@ char KsiazkaAdresowa::wczytajZnak()
             znak = wejscie[0];
             break;
         }
-        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+        else if (wejscie.length() > 1)
+        {
+            cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+        }
+
     }
+
     return znak;
 }
 
