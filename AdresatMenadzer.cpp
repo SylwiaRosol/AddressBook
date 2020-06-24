@@ -10,9 +10,7 @@ void AdresatMenadzer::dodajAdresata()
     adresat = podajDaneNowegoAdresata();
 
     adresaci.push_back(adresat);
-    //dopiszAdresataDoPliku(adresat);
-
-
+    plikZAdresatami.dopiszAdresataDoPliku(adresat);
 }
 
 Adresat AdresatMenadzer::podajDaneNowegoAdresata()

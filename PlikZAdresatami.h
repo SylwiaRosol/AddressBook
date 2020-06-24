@@ -8,6 +8,7 @@
 #include <sstream>
 
 #include "Adresat.h"
+#include "MetodyPomocnicze.h"
 
 
 using namespace std;
@@ -29,6 +30,9 @@ public:
     int konwersjaStringNaInt(string liczba);
     string pobierzLiczbe(string tekst, int pozycjaZnaku);
     int pobierzIdOstatniegoAdresata();
+    void dopiszAdresataDoPliku(Adresat adresat);
+    string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);
+    bool czyPlikJestPusty();
 };
 
 #endif

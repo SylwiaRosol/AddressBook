@@ -9,5 +9,3 @@ string MetodyPomocnicze::konwerjsaIntNaString(int liczba)
 }
 
 
-
-
