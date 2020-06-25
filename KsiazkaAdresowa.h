@@ -13,8 +13,6 @@ class KsiazkaAdresowa
     AdresatMenadzer *adresatMenadzer;
     const string NAZWA_PLIKU_Z_ADRESATAMI;
 
-    int idZalogowanegoUzytkownika;
-
 
 public:
 
@@ -22,6 +20,7 @@ public:
     : uzytkownikMenadzer(nazwaPlikuZUzytkownikami), NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
     { adresatMenadzer = NULL;
     };
+
     ~KsiazkaAdresowa () {
     delete adresatMenadzer;
     adresatMenadzer = NULL;

@@ -22,9 +22,7 @@ void UzytkownikMenadzer::wypiszWszystkichUzytkownikow()
          cout << uzytkownicy[i].pobierzLogin()<< endl;
          cout << uzytkownicy[i].pobierzHaslo()<< endl;
          system("pause");
-
     }
-
 }
 
 Uzytkownik UzytkownikMenadzer::podajDaneNowegoUzytkownika()
@@ -92,7 +90,6 @@ int UzytkownikMenadzer::logowanieUzytkownika()
                     system("pause");
                      idZalogowanegoUzytkownika = itr -> pobierzId();
                      return idZalogowanegoUzytkownika;
-
                 }
             }
             cout << "Wprowadzono 3 razy bledne haslo." << endl;
@@ -135,6 +132,7 @@ void UzytkownikMenadzer::wylogowanie()
 {
     idZalogowanegoUzytkownika = 0;
       cout << "Zostales wylogowany" << endl;
+      Sleep(500);
 }
 
 int UzytkownikMenadzer::pobierzIdZalogowanegoUzytkownika()

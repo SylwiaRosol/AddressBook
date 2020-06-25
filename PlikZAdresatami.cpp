@@ -1,9 +1,17 @@
 #include "PlikZAdresatami.h"
 
-
-
-int PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(vector <Adresat> adresaci, int idZalogowanegoUzytkownika)
+int PlikZAdresatami::pobierzIdOstatniegoAdresata()
 {
+    return idOstatniegoAdresata;
+}
+void PlikZAdresatami::ustawIdOstatniegoAdresata(int noweIdOstatniegoAdresata)
+{
+  idOstatniegoAdresata = noweIdOstatniegoAdresata;
+}
+
+vector <Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika)
+{
+    vector <Adresat> adresaci;
     Adresat adresat;
     int idOstatniegoAdresata = 0;
     string daneJednegoAdresataOddzielonePionowymiKreskami = "";
@@ -31,10 +39,9 @@ int PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(vector <Adres
     if (daneOstaniegoAdresataWPliku != "")
     {
         idOstatniegoAdresata = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);
-        return idOstatniegoAdresata;
+        ustawIdOstatniegoAdresata(idOstatniegoAdresata);
     }
-    else
-        return 0;
+        return adresaci;
 
 }
 
@@ -119,10 +126,7 @@ string PlikZAdresatami::pobierzLiczbe(string tekst, int pozycjaZnaku)
     return liczba;
 }
 
-int PlikZAdresatami::pobierzIdOstatniegoAdresata()
-{
-    return idOstatniegoAdresata;
-}
+
 
 void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat)
 {
@@ -135,19 +139,17 @@ void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat)
         liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
 
         if (czyPlikJestPusty() == true)
-        {
             plikTekstowy << liniaZDanymiAdresata;
-        }
+
         else
-        {
             plikTekstowy << endl << liniaZDanymiAdresata ;
-        }
     }
     else
     {
         cout << "Nie udalo sie otworzyc pliku i zapisac w nim danych." << endl;
     }
     plikTekstowy.close();
+    idOstatniegoAdresata++;
     system("pause");
 }
 

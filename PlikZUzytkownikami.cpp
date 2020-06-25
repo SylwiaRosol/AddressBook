@@ -11,13 +11,10 @@ void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik)
         liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
 
         if (czyPlikJestPusty() == true)
-        {
             plikTekstowy << liniaZDanymiUzytkownika;
-        }
-        else if (czyPlikJestPusty() == false)
-        {
+
+        else
             plikTekstowy << endl << liniaZDanymiUzytkownika;
-        }
     }
     else
         cout << "Nie udalo sie otworzyc pliku " << nazwaPlikuZUzytkownikami << " i zapisac w nim danych." << endl;
@@ -63,7 +60,6 @@ vector <Uzytkownik> PlikZUzytkownikami::wczytajUzytkownikowZPliku()
             uzytkownik = pobierzDaneUzytkownika(daneJednegoUzytkownikaOddzielonePionowymiKreskami);
             uzytkownicy.push_back(uzytkownik);
         }
-
     }
     plikTekstowy.close();
     return uzytkownicy;

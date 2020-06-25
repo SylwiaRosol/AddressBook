@@ -11,12 +11,12 @@ void AdresatMenadzer::dodajAdresata()
 
     adresaci.push_back(adresat);
     plikZAdresatami.dopiszAdresataDoPliku(adresat);
+
 }
 
 Adresat AdresatMenadzer::podajDaneNowegoAdresata()
 {
     Adresat adresat;
-    idOstatniegoAdresata = 0;
     int id, idUzytkownika;
     string imie, nazwisko, numerTelefonu, email, adres;
 
@@ -91,11 +91,6 @@ string AdresatMenadzer::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
     return tekst;
 }
 
-
-int AdresatMenadzer::wczytajAdresatowZalogowanegoUzytkownikaZPliku()
-{
-        idOstatniegoAdresata = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, ID_ZALOGOWANEGO_UZYTKOWNIKA);
-}
 
 string AdresatMenadzer::wczytajLinie()
 {

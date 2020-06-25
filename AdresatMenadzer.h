@@ -19,21 +19,21 @@ class AdresatMenadzer
     vector <Adresat> adresaci;
     PlikZAdresatami plikZAdresatami;
     Adresat adresat;
-    int idOstatniegoAdresata;
 
 
 
 public:
      AdresatMenadzer(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika) :
-        plikZAdresatami(nazwaPlikuZAdresatami), ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika) {};
+        plikZAdresatami(nazwaPlikuZAdresatami), ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika)
+        {
+        adresaci = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(ID_ZALOGOWANEGO_UZYTKOWNIKA);
+        };
 
     void dodajAdresata();
     Adresat podajDaneNowegoAdresata();
-
     void wyswietlWszystkichAdresatow();
     void wyswietlDaneAdresata(Adresat adresat);
     string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
-    int wczytajAdresatowZalogowanegoUzytkownikaZPliku();
     string wczytajLinie();
 };
 

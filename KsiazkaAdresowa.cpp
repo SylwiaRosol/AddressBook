@@ -18,8 +18,6 @@ int KsiazkaAdresowa::logowanieUzytkownika()
     {
        adresatMenadzer = new AdresatMenadzer(NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikMenadzer.pobierzIdZalogowanegoUzytkownika());
     }
-   // uzytkownikMenadzer.ustawIdZalogowanegoUzytkownika(uzytkownikMenadzer.logowanieUzytkownika());
-    // adresatMenadzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku(uzytkownikMenadzer.pobierzIdZalogowanegoUzytkownika());
 }
 
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika()
@@ -108,9 +106,7 @@ char KsiazkaAdresowa::wczytajZnak()
         {
             cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
         }
-
     }
-
     return znak;
 }
 
