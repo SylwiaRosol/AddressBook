@@ -37,6 +37,10 @@ int main()
         {
             ksiazkaAdresowa.wyswietlWszystkichAdresatow();
         }
+        else if (wybor2 == '5')
+        {
+            ksiazkaAdresowa.usunAdresata();
+        }
         else if (wybor2 == '7')
         {
             ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
@@ -54,3 +58,14 @@ int main()
 
     return 0;
 }
+/*
+
+ #include "AdresatMenadzer.h"
+int main()
+{
+   KsiazkaAdresowa ksiazkaAdresowa ("Uzytkownicy.txt", "Adresaci.txt");
+    int idZalogowanegoUzytkownika = 1;
+
+     ksiazkaAdresowa.usunAdresata();
+}
+*/

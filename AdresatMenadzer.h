@@ -33,8 +33,15 @@ public:
     Adresat podajDaneNowegoAdresata();
     void wyswietlWszystkichAdresatow();
     void wyswietlDaneAdresata(Adresat adresat);
+    int usunAdresata();
+    int podajIdWybranegoAdresata();
+    void usunWybranaLinieWPliku();
+
+
     string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
     string wczytajLinie();
+    int wczytajLiczbeCalkowita();
+    char wczytajZnak();
 };
 
 #endif

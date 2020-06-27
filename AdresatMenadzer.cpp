@@ -80,6 +80,62 @@ void AdresatMenadzer::wyswietlDaneAdresata(Adresat adresat)
     cout << "Adres:              " << adresat.pobierzAdres() << endl;
 }
 
+int AdresatMenadzer::usunAdresata()
+{
+    int idUsuwanegoAdresata = 0;
+    int numerLiniiUsuwanegoAdresata = 0;
+
+    system("cls");
+    cout << ">>> USUWANIE WYBRANEGO ADRESATA <<<" << endl << endl;
+    idUsuwanegoAdresata = podajIdWybranegoAdresata();
+
+
+    char znak;
+    bool czyIstniejeAdresat = false;
+
+    for (vector <Adresat>::iterator itr = adresaci.begin(); itr != adresaci.end(); itr++)
+    {
+
+        if (itr-> Adresat::pobierzId() == idUsuwanegoAdresata)
+        {
+            czyIstniejeAdresat = true;
+            cout << endl << "Potwierdz naciskajac klawisz 't': ";
+            znak = wczytajZnak();
+            if (znak == 't')
+            {
+                adresaci.erase(itr);
+                //numerLiniiUsuwanegoAdresata = zwrocNumerLiniiSzukanegoAdresata(idUsuwanegoAdresata);
+                plikZAdresatami.usunWybranaLinieWPliku(idUsuwanegoAdresata);
+                cout << endl << endl << "Szukany adresat zostal USUNIETY" << endl << endl;
+                system("pause");
+                return idUsuwanegoAdresata;
+            }
+            else
+            {
+                cout << endl << endl << "Wybrany adresat NIE zostal usuniety" << endl << endl;
+                system("pause");
+                return 0;
+            }
+        }
+    }
+    if (czyIstniejeAdresat == false)
+    {
+        cout << endl << "Nie ma takiego adresata w ksiazce adresowej" << endl << endl;
+        system("pause");
+    }
+    return 0;
+}
+
+int AdresatMenadzer::podajIdWybranegoAdresata()
+{
+    int idWybranegoAdresata = 0;
+    cout << "Podaj numer ID Adresata: ";
+    idWybranegoAdresata  = wczytajLiczbeCalkowita();
+    return idWybranegoAdresata;
+}
+
+
+
 
 string AdresatMenadzer::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
 {
@@ -99,3 +155,38 @@ string AdresatMenadzer::wczytajLinie()
     return wejscie;
 }
 
+int AdresatMenadzer::wczytajLiczbeCalkowita()
+{
+    string wejscie = "";
+    int liczba = 0;
+
+    while (true)
+    {
+        getline(cin, wejscie);
+
+        stringstream myStream(wejscie);
+        if (myStream >> liczba)
+            break;
+        cout << "To nie jest liczba. Wpisz ponownie. " << endl;
+    }
+    return liczba;
+}
+
+char AdresatMenadzer::wczytajZnak()
+{
+    string wejscie = "";
+    char znak  = {0};
+
+    while (true)
+    {
+        getline(cin, wejscie);
+
+        if (wejscie.length() == 1)
+        {
+            znak = wejscie[0];
+            break;
+        }
+        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+    }
+    return znak;
+}
