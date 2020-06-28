@@ -45,6 +45,16 @@ void KsiazkaAdresowa::dodajAdresata()
      adresatMenadzer -> wyswietlWszystkichAdresatow();
  }
 
+int KsiazkaAdresowa::usunAdresata()
+{
+    adresatMenadzer-> usunAdresata();
+}
+
+void KsiazkaAdresowa::edytujAdresata()
+{
+    adresatMenadzer-> edytujAdresata();
+
+}
 
  char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego()
 {
@@ -76,7 +86,7 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika()
     */
     cout << "4. Wyswietl adresatow" << endl;
     cout << "5. Usun adresata" << endl;
-   //  cout << "6. Edytuj adresata" << endl;
+    cout << "6. Edytuj adresata" << endl;
     cout << "---------------------------" << endl;
     cout << "7. Zmien haslo" << endl;
     cout << "8. Wyloguj sie" << endl;
@@ -112,8 +122,4 @@ char KsiazkaAdresowa::wczytajZnak()
 bool KsiazkaAdresowa::czyUzytkownikJestZalogowany()
 {
     uzytkownikMenadzer.czyUzytkownikJestZalogowany();
-}
-int KsiazkaAdresowa::usunAdresata()
-{
-    adresatMenadzer-> usunAdresata();
 }

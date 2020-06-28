@@ -193,9 +193,7 @@ void PlikZAdresatami::usunWybranaLinieWPliku(int idUsuwanegoAdresata)
     {
         while(getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami))
         {
-            if(idUsuwanegoAdresata == pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneJednegoAdresataOddzielonePionowymiKreskami))
-            {}
-            else
+            if(idUsuwanegoAdresata != pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneJednegoAdresataOddzielonePionowymiKreskami))
                 tymczasowyPlikTekstowy << daneJednegoAdresataOddzielonePionowymiKreskami << endl;
         }
         if (idUsuwanegoAdresata == 0)
@@ -211,6 +209,10 @@ void PlikZAdresatami::usunWybranaLinieWPliku(int idUsuwanegoAdresata)
         zmienNazwePliku(nazwaTymczasowegoPlikuZAdresatami, nazwaPlikuZAdresatami);
 }
 
+
+
+
+
 void PlikZAdresatami::usunPlik(string nazwaPlikuZRozszerzeniem)
 {
     if (remove(nazwaPlikuZRozszerzeniem.c_str()) == 0) {}
@@ -224,3 +226,42 @@ void PlikZAdresatami::zmienNazwePliku(string staraNazwa, string nowaNazwa)
     else
         cout << "Nazwa pliku nie zostala zmieniona." << staraNazwa << endl;
 }
+
+void PlikZAdresatami::edytujWybranegoAdresataWPliku(Adresat adresat)
+{
+    fstream plikTekstowy, tymczasowyPlikTekstowy;
+    string daneJednegoAdresataOddzielonePionowymiKreskami = "";
+    string nazwaTymczasowegoPlikuZAdresatami = "AdresaciTymczasowi.txt";
+    string liniaZDanymiAdresata = "";
+    plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), ios::in);
+    tymczasowyPlikTekstowy.open(nazwaTymczasowegoPlikuZAdresatami.c_str(), ios::out | ios::app);
+
+    if (plikTekstowy.good() == true && adresat.pobierzId() != 0)
+    {
+        while(getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami))
+        {
+            if(adresat.pobierzId() == pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneJednegoAdresataOddzielonePionowymiKreskami))
+            {
+                liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
+                tymczasowyPlikTekstowy <<  liniaZDanymiAdresata;
+            }
+            else
+                tymczasowyPlikTekstowy << daneJednegoAdresataOddzielonePionowymiKreskami << endl;
+        }
+        if (adresat.pobierzId() == 0)
+        {
+            plikTekstowy.close();
+        }
+    }
+
+        plikTekstowy.close();
+        tymczasowyPlikTekstowy.close();
+
+        usunPlik(nazwaPlikuZAdresatami);
+        zmienNazwePliku(nazwaTymczasowegoPlikuZAdresatami, nazwaPlikuZAdresatami);
+
+  /*   numerLiniiEdytowanegoAdresata = zwrocNumerLiniiSzukanegoAdresata(idEdytowanegoAdresata);
+    liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
+    edytujWybranaLinieWPliku(numerLiniiEdytowanegoAdresata, liniaZDanymiAdresata);
+*/
+ }

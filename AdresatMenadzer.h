@@ -36,6 +36,9 @@ public:
     int usunAdresata();
     int podajIdWybranegoAdresata();
     void usunWybranaLinieWPliku();
+    void edytujAdresata();
+    char wybierzOpcjeZMenuEdycja();
+    void zaktualizujDaneWybranegoAdresata(Adresat adresat);
 
 
     string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
