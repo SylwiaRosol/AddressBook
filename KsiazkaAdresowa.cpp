@@ -18,8 +18,6 @@ int KsiazkaAdresowa::logowanieUzytkownika()
     {
        adresatMenadzer = new AdresatMenadzer(NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikMenadzer.pobierzIdZalogowanegoUzytkownika());
     }
-   // uzytkownikMenadzer.ustawIdZalogowanegoUzytkownika(uzytkownikMenadzer.logowanieUzytkownika());
-    // adresatMenadzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku(uzytkownikMenadzer.pobierzIdZalogowanegoUzytkownika());
 }
 
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika()
@@ -47,6 +45,16 @@ void KsiazkaAdresowa::dodajAdresata()
      adresatMenadzer -> wyswietlWszystkichAdresatow();
  }
 
+int KsiazkaAdresowa::usunAdresata()
+{
+    adresatMenadzer-> usunAdresata();
+}
+
+void KsiazkaAdresowa::edytujAdresata()
+{
+    adresatMenadzer-> edytujAdresata();
+
+}
 
  char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego()
 {
@@ -77,10 +85,9 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika()
     cout << "3. Wyszukaj po nazwisku" << endl;
     */
     cout << "4. Wyswietl adresatow" << endl;
-   /* cout << "5. Usun adresata" << endl;
+    cout << "5. Usun adresata" << endl;
     cout << "6. Edytuj adresata" << endl;
     cout << "---------------------------" << endl;
-    */
     cout << "7. Zmien haslo" << endl;
     cout << "8. Wyloguj sie" << endl;
     cout << "---------------------------" << endl;
@@ -108,9 +115,7 @@ char KsiazkaAdresowa::wczytajZnak()
         {
             cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
         }
-
     }
-
     return znak;
 }
 

@@ -25,20 +25,17 @@ public:
     delete adresatMenadzer;
     adresatMenadzer = NULL;
     }
-    char wybierzOpcjeZMenuUzytkownika();
-    char wybierzOpcjeZMenuGlownego();
 
     void rejstracjaUzytkownika();
     void wypiszWszystkichUzytkownikow();
     int logowanieUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();
     void wylogowanie();
-
     void dodajAdresata();
     void wyswietlWszystkichAdresatow();
-    int usunAdresata();
-    void edytujAdresata();
-
+    char wybierzOpcjeZMenuUzytkownika();
+    char wybierzOpcjeZMenuGlownego();
     char wczytajZnak();
     bool czyUzytkownikJestZalogowany();
+    int usunAdresata();
 };

@@ -37,6 +37,14 @@ int main()
         {
             ksiazkaAdresowa.wyswietlWszystkichAdresatow();
         }
+        else if (wybor2 == '5')
+        {
+            ksiazkaAdresowa.usunAdresata();
+        }
+        else if (wybor2 == '6')
+        {
+            ksiazkaAdresowa.edytujAdresata();
+        }
         else if (wybor2 == '7')
         {
             ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
