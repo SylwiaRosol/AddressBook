@@ -68,7 +68,7 @@ void KsiazkaAdresowa::edytujAdresata()
     cout << "9. Koniec programu" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
-    wybor = wczytajZnak();
+    wybor = MetodyPomocnicze::wczytajZnak();
 
     return wybor;
 }
@@ -92,31 +92,9 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika()
     cout << "8. Wyloguj sie" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
-    wybor = wczytajZnak();
+    wybor = MetodyPomocnicze::wczytajZnak();
 
     return wybor;
-}
-
-char KsiazkaAdresowa::wczytajZnak()
-{
-    string wejscie = "";
-    char znak  = {0};
-
-    while (true)
-    {
-        getline(cin, wejscie);
-
-        if (wejscie.length() == 1)
-        {
-            znak = wejscie[0];
-            break;
-        }
-        else if (wejscie.length() > 1)
-        {
-            cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
-        }
-    }
-    return znak;
 }
 
 bool KsiazkaAdresowa::czyUzytkownikJestZalogowany()

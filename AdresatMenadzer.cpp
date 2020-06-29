@@ -24,25 +24,25 @@ Adresat AdresatMenadzer::podajDaneNowegoAdresata()
     adresat.ustawIdUzytkownika(ID_ZALOGOWANEGO_UZYTKOWNIKA);
 
     cout << "Podaj imie: ";
-    imie = wczytajLinie();
-    imie = zamienPierwszaLitereNaDuzaAPozostaleNaMale(imie);
+    imie = MetodyPomocnicze::wczytajLinie();
+    imie = MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(imie);
     adresat.ustawImie(imie);
 
     cout << "Podaj nazwisko: ";
-    nazwisko = wczytajLinie();
-    nazwisko = zamienPierwszaLitereNaDuzaAPozostaleNaMale(nazwisko);
+    nazwisko = MetodyPomocnicze::wczytajLinie();
+    nazwisko = MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(nazwisko);
     adresat.ustawNazwisko(nazwisko);
 
     cout << "Podaj numer telefonu: ";
-    numerTelefonu = wczytajLinie();
+    numerTelefonu = MetodyPomocnicze::wczytajLinie();
     adresat.ustawNumerTelefonu(numerTelefonu);
 
     cout << "Podaj email: ";
-    email = wczytajLinie();
+    email = MetodyPomocnicze::wczytajLinie();
     adresat.ustawEmail(email);
 
     cout << "Podaj adres: ";
-    adres = wczytajLinie();
+    adres = MetodyPomocnicze::wczytajLinie();
     adresat.ustawAdres(adres);
 
     return adresat;
@@ -100,7 +100,7 @@ int AdresatMenadzer::usunAdresata()
         {
             czyIstniejeAdresat = true;
             cout << endl << "Potwierdz naciskajac klawisz 't': ";
-            znak = wczytajZnak();
+            znak = MetodyPomocnicze::wczytajZnak();
             if (znak == 't')
             {
                 adresaci.erase(itr);
@@ -129,7 +129,7 @@ int AdresatMenadzer::podajIdWybranegoAdresata()
 {
     int idWybranegoAdresata = 0;
     cout << "Podaj numer ID Adresata: ";
-    idWybranegoAdresata  = wczytajLiczbeCalkowita();
+    idWybranegoAdresata  = MetodyPomocnicze::wczytajLiczbeCalkowita();
     return idWybranegoAdresata;
 }
 
@@ -158,27 +158,27 @@ void AdresatMenadzer::edytujAdresata()
             {
             case '1':
                 cout << "Podaj nowe imie: ";
-                adresaci[i].Adresat::ustawImie(zamienPierwszaLitereNaDuzaAPozostaleNaMale(wczytajLinie()));
+                adresaci[i].Adresat::ustawImie(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
                 zaktualizujDaneWybranegoAdresata(adresaci[i]);
                 break;
            case '2':
                 cout << "Podaj nowe nazwisko: ";
-                adresaci[i].Adresat::ustawNazwisko(zamienPierwszaLitereNaDuzaAPozostaleNaMale(wczytajLinie()));
+                adresaci[i].Adresat::ustawNazwisko(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
                 zaktualizujDaneWybranegoAdresata(adresaci[i]);
                 break;
             case '3':
                 cout << "Podaj nowy numer telefonu: ";
-                adresaci[i].Adresat::ustawNumerTelefonu(wczytajLinie());
+                adresaci[i].Adresat::ustawNumerTelefonu(MetodyPomocnicze::wczytajLinie());
                 zaktualizujDaneWybranegoAdresata(adresaci[i]);
                 break;
             case '4':
                 cout << "Podaj nowy email: ";
-                adresaci[i].Adresat::ustawEmail(wczytajLinie());
+                adresaci[i].Adresat::ustawEmail(MetodyPomocnicze::wczytajLinie());
                 zaktualizujDaneWybranegoAdresata(adresaci[i]);
                 break;
             case '5':
                 cout << "Podaj nowy adres zamieszkania: ";
-                adresaci[i].Adresat::ustawAdres(wczytajLinie());
+                adresaci[i].Adresat::ustawAdres(MetodyPomocnicze::wczytajLinie());
                 zaktualizujDaneWybranegoAdresata(adresaci[i]);
                 break;
             case '6':
@@ -211,7 +211,7 @@ char AdresatMenadzer::wybierzOpcjeZMenuEdycja()
     cout << "5 - Adres" << endl;
     cout << "6 - Powrot " << endl;
     cout << endl << "Twoj wybor: ";
-    wybor = wczytajZnak();
+    wybor = MetodyPomocnicze::wczytajZnak();
 
     return wybor;
 }
@@ -224,61 +224,4 @@ void AdresatMenadzer::zaktualizujDaneWybranegoAdresata(Adresat adresat)
     plikZAdresatami.edytujWybranegoAdresataWPliku(adresat);
 
     cout << endl << "Dane zostaly zaktualizowane." << endl << endl;
-}
-
-
-
-
-string AdresatMenadzer::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
-{
-    if (!tekst.empty())
-    {
-        transform(tekst.begin(), tekst.end(), tekst.begin(), ::tolower);
-        tekst[0] = toupper(tekst[0]);
-    }
-    return tekst;
-}
-
-
-string AdresatMenadzer::wczytajLinie()
-{
-    string wejscie = "";
-    getline(cin, wejscie);
-    return wejscie;
-}
-
-int AdresatMenadzer::wczytajLiczbeCalkowita()
-{
-    string wejscie = "";
-    int liczba = 0;
-
-    while (true)
-    {
-        getline(cin, wejscie);
-
-        stringstream myStream(wejscie);
-        if (myStream >> liczba)
-            break;
-        cout << "To nie jest liczba. Wpisz ponownie. " << endl;
-    }
-    return liczba;
-}
-
-char AdresatMenadzer::wczytajZnak()
-{
-    string wejscie = "";
-    char znak  = {0};
-
-    while (true)
-    {
-        getline(cin, wejscie);
-
-        if (wejscie.length() == 1)
-        {
-            znak = wejscie[0];
-            break;
-        }
-        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
-    }
-    return znak;
 }

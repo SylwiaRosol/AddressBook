@@ -2,6 +2,7 @@
 
 #include "UzytkownikMenadzer.h"
 #include "AdresatMenadzer.h"
+#include "MetodyPomocnicze.h"
 
 
 using namespace std;
@@ -39,6 +40,5 @@ public:
     int usunAdresata();
     void edytujAdresata();
 
-    char wczytajZnak();
     bool czyUzytkownikJestZalogowany();
 };

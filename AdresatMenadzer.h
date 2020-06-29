@@ -40,11 +40,6 @@ public:
     char wybierzOpcjeZMenuEdycja();
     void zaktualizujDaneWybranegoAdresata(Adresat adresat);
 
-
-    string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
-    string wczytajLinie();
-    int wczytajLiczbeCalkowita();
-    char wczytajZnak();
 };
 
 #endif
