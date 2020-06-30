@@ -231,7 +231,7 @@ void PlikZAdresatami::edytujWybranegoAdresataWPliku(Adresat adresat)
             if(adresat.pobierzId() == pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneJednegoAdresataOddzielonePionowymiKreskami))
             {
                 liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
-                tymczasowyPlikTekstowy <<  liniaZDanymiAdresata;
+                tymczasowyPlikTekstowy <<  liniaZDanymiAdresata << endl;
             }
             else
                 tymczasowyPlikTekstowy << daneJednegoAdresataOddzielonePionowymiKreskami << endl;
