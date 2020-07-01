@@ -5,6 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <sstream>
+#include <vector>
 
 
 using namespace std;
@@ -15,7 +17,7 @@ const string NAZWA_PLIKU;
 public:
     PlikTekstowy(string nazwaPliku) : NAZWA_PLIKU(nazwaPliku) {}
     string pobierzNazwePliku();
-    bool czyPlikJestPusty();
+    bool czyPlikJestPusty(fstream &plikTekstowy);
 
 
 
