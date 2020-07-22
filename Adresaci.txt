@@ -4,3 +4,4 @@
 4|2|Df|Kowalski|32|||
 5|1|D|E|2|s||
 6|2|Rtr|We|5|r||
+7|3|R|R|33|ee|ul. Misiakow|

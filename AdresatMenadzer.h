@@ -20,6 +20,12 @@ class AdresatMenadzer
     PlikZAdresatami plikZAdresatami;
     Adresat adresat;
 
+    void wyswietlDaneAdresata(Adresat adresat);
+    Adresat podajDaneNowegoAdresata();
+    void wyswietlIloscWyszukanychAdresatow(int iloscAdresatow);
+    int podajIdWybranegoAdresata();
+    char wybierzOpcjeZMenuEdycja();
+    void zaktualizujDaneWybranegoAdresata(Adresat adresat);
 
 
 public:
@@ -30,16 +36,11 @@ public:
         };
 
     void dodajAdresata();
-    Adresat podajDaneNowegoAdresata();
     void wyswietlWszystkichAdresatow();
-    void wyswietlDaneAdresata(Adresat adresat);
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
     int usunAdresata();
-    int podajIdWybranegoAdresata();
-    void usunWybranaLinieWPliku();
     void edytujAdresata();
-    char wybierzOpcjeZMenuEdycja();
-    void zaktualizujDaneWybranegoAdresata(Adresat adresat);
-
 };
 
 #endif

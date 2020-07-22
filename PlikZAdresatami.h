@@ -20,23 +20,25 @@ class PlikZAdresatami : public PlikTekstowy
     int idOstatniegoAdresata;
     string nazwaPliku;
 
-public:
-
-    PlikZAdresatami(string nazwaPliku) : PlikTekstowy(nazwaPliku) {
-    };
-    int pobierzIdOstatniegoAdresata();
-    void ustawIdOstatniegoAdresata(int noweIdOstatniegoAdresata);
-    vector <Adresat> wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
     Adresat pobierzDaneAdresata( string daneJednegoAdresataOddzielonePionowymiKreskami);
     int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami( string daneJednegoAdresataOddzielonePionowymiKreskami);
     int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
     string pobierzLiczbe(string tekst, int pozycjaZnaku);
-    void dopiszAdresataDoPliku(Adresat adresat);
     string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);
-    void usunWybranegoAdresata(int idUsuwanegoAdresata);
     void usunPlik(string nazwaPlikuZRozszerzeniem);
     void zmienNazwePliku(string staraNazwa, string nowaNazwa);
+
+
+public:
+
+    PlikZAdresatami(string nazwaPliku) : PlikTekstowy(nazwaPliku) {};
+    int pobierzIdOstatniegoAdresata();
+    void ustawIdOstatniegoAdresata(int noweIdOstatniegoAdresata);
+    vector <Adresat> wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
+    void dopiszAdresataDoPliku(Adresat adresat);
+    void usunWybranegoAdresata(int idUsuwanegoAdresata);
     void edytujWybranegoAdresataWPliku(Adresat adresat);
+
 };
 
 #endif

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>340</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>AdressBook
+--
+- userManager:UserManager
+- *recipientManager: RecipientManager
+- FILE_NAME_WITH_RECIPIENT: string
+--
++ AdressBook()
++ ~AdressBook()
++ selectOptionFromeTheMenuUser(): Char
++ selectOptionFromTheMainMenu() :Char
+
++ registerUser() : Void
++ signInUser() : Void
++ changePasswordLogedUser(): Void
++ singOut(): Void
++ isUserLoggedIn(): Bool
+
++ addRecipient: Void
++ searchRecipientByName(): Void
++ searchRecipientBySurname(): Void
++ showAllRecipient(): Void
++ deleteRecipient(): Intiger
++ editRecipient(): Void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>370</x>
+      <y>20</y>
+      <w>510</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>UserManager
+--
+- idLoggedUser: Integer
+- users : vector &lt;User&gt;
+- fileWithUsers: FileWithUsers
+--
++ UserManager()
++ registerUser() : Void
++ signInUser() : Void
++ changePasswordLogedUser(): Void
++ singOut(): Void
++ getIdLoggedUser() : Intiger
++ setIdLoggedUser() : Void
++ isUserLoggedIn() : Bool
+
+- isExistName() : Bool
+- getIdNewUser() : Intiger
+- dataNewUser() : User</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1130</x>
+      <y>20</y>
+      <w>140</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>User
+--
+- id : Intiger
+- name : String
+- password : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>960</x>
+      <y>390</y>
+      <w>370</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>FileWithUsers
+--
+- nameFile : String
+--
++ FileWithUsers()
++ addUserFromFile() : Void
++ loadUsersFromFile() : vector &lt;User&gt;
++ saveAllUsersToTheFile() : Void
+
+- getDataUser() : User
+- changeDateUserForTheTextWithVerticalLine() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>430</y>
+      <w>490</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>HelpfulMethods
+--
+_+ conversionIntForString() : String_
+_+ changeFirstLetterForCapitalLetterAndOthersForLowercaseLetters() : String_
+_+ loadSign(): Char_
+_+ loadLine(): String_
+_+ loadIntiger(): Intiger_
+_+ conversionStringForInt(): Intiger_
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>410</y>
+      <w>350</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>RecipientManager
+--
+- ID_LOGGED_USER: Intiger
+- recipients : vector &lt;Recipient&gt;
+- fileWithRecipients : FileWithRecipients
+- recipient : Recipient
+--
++ RecipientManager()
++ addRecipient() : Intiger
++ editRecipient(): Void
++ showAllRecipients() : Void
++ searchRecipientByName(): Void
++ searchRecipientBySurname(): Void
++ deleteRecipient(): Intiger
+
+- getDataNewRecipient() : Recipient
+- showAmountSearchedRecipients(): Void
+- showDataRecipient() : Void
+- getIdSelectedRecipient(): Intiger
+- selectOptionFromTheMenuEdition(): Char
+- upgradeDateSelectedRecipient(): Void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>800</y>
+      <w>210</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Recipient
+--
+- id : Intiger
+- name : String
+- surname : String
+- phoneNumber : Intiger
+- email : String
+- address : String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>800</y>
+      <w>860</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>FileWithRecipients
+--
+- file : Fstream
+- idLastRecipient : Intiger
+- nameFile : String
+--
++ FileWitchRecipients()
++ getIdLastRecipient(): Intiger
++ setIdLastRecipient(): Void
++ loadRecipientsLoggedUserFromFile(): Vector &lt;Recipient&gt;
++ addRecipientToFile(): Void
++ deleteSelectedRecipient(): Void
++ editSelectedRecipient(): Void
+ 
+- getIdUserFromDataWithVerticalLine(): Intiger
+- getIdRecipientFromDataWithVerticalLine(): Intiger
+- getDateRecipient(): Recipient
+- getNumber(): String
+- changeDateRecipientForTheTextWithVerticalLine(): String
+- deleteFile(): Void
+- changeNameFile(): Void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>50</y>
+      <w>280</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;260.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>720</y>
+      <w>30</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+layer=0</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>610</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>File
+--
+- NAME_FILE: String
+--
++ File()
++ getNameFile(): String
++ isFileEmpty(): Bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>680</y>
+      <w>300</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>280.0;10.0;10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1020</x>
+      <y>540</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>720</y>
+      <w>30</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>260</y>
+      <w>150</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0;130.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>170</x>
+      <y>930</y>
+      <w>110</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>90.0;100.0;10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>140</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1180</x>
+      <y>110</y>
+      <w>30</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>10.0;280.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>460</x>
+      <y>570</y>
+      <w>30</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>410</x>
+      <y>510</y>
+      <w>30</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>490</y>
+      <w>80</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>300</y>
+      <w>30</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>310</y>
+      <w>110</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>350</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=dark_gray</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>340</x>
+      <y>530</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+</diagram>

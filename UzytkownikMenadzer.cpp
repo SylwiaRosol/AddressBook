@@ -14,16 +14,6 @@ void UzytkownikMenadzer::rejestracjaUzytkownika()
     system("pause");
 }
 
-void UzytkownikMenadzer::wypiszWszystkichUzytkownikow()
-{
-    for (int i = 0; i < uzytkownicy.size(); i++)
-    {
-         cout << uzytkownicy[i].pobierzId() << endl;
-         cout << uzytkownicy[i].pobierzLogin()<< endl;
-         cout << uzytkownicy[i].pobierzHaslo()<< endl;
-         system("pause");
-    }
-}
 
 Uzytkownik UzytkownikMenadzer::podajDaneNowegoUzytkownika()
 {

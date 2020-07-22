@@ -13,13 +13,13 @@ class PlikZUzytkownikami : public PlikTekstowy
 {
     string nazwaPliku;
     Uzytkownik pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
+    string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik);
 
 
     public:
     PlikZUzytkownikami(string nazwaPliku) : PlikTekstowy(nazwaPliku) {
     };
     void dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik);
-    string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik);
     vector <Uzytkownik> wczytajUzytkownikowZPliku();
     void zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik> &uzytkownicy);
 

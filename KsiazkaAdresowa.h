@@ -30,12 +30,13 @@ public:
     char wybierzOpcjeZMenuGlownego();
 
     void rejstracjaUzytkownika();
-    void wypiszWszystkichUzytkownikow();
     int logowanieUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();
     void wylogowanie();
 
     void dodajAdresata();
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
     void wyswietlWszystkichAdresatow();
     int usunAdresata();
     void edytujAdresata();
